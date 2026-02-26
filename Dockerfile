@@ -15,6 +15,14 @@ RUN set -ex; \
     apk upgrade --no-cache -a; \
     apk add --no-cache \
         intel-media-driver \
+        libva-intel-driver \
+        mesa-va-gallium \
+        libva-utils \
+        libdrm \
+        # --- 新增：字体支持 (解决画面乱码) ---
+        ttf-dejavu \
+        font-noto-cjk \
+        fontconfig; \
         ca-certificates \
         tzdata \
         bash \
@@ -31,6 +39,8 @@ RUN set -ex; \
         build-base \
         linux-headers \
         geckodriver; \
+# 1. 刷新字体缓存，让系统识别新安装的中文和符号字体
+    fc-cache -fv; \
     useradd -d /tmp --system recording -u 122; \
 # Give root a random password
     echo "root:$(openssl rand -base64 12)" | chpasswd; \

@@ -18,9 +18,6 @@ fi
 
 # Delete all contents on startup to start fresh
 rm -fr /tmp/{*,.*}
-mkdir -p /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
-addgroup recording video || true
-addgroup recording render || true
 
 cat << RECORDING_CONF > "/conf/recording.conf"
 [logs]

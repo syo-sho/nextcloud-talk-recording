@@ -52,11 +52,8 @@ internalsecret = ${INTERNAL_SECRET}
 
 [ffmpeg]
 # common = ffmpeg -loglevel level+warning -n
-# outputaudio = -c:a libopus -b:a 32k
-# outputvideo = -c:v libvpx -deadline:v realtime -cpu-used 8 -crf 32 -b:v 800k
-common = ffmpeg -loglevel warning -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi
-outputaudio = -c:a libopus -b:a 32k
-outputvideo = -vf "hwupload,format=vaapi" -c:v h264_vaapi -profile:v main -level 4.0 -b:v 2M -maxrate 2M -bufsize 4M
+ outputaudio = -c:a libopus -b:a 32k
+ outputvideo = -c:v libvpx -deadline:v realtime -cpu-used 8 -crf 32 -b:v 800k
 extensionaudio = .ogg
 extensionvideo = .webm
 

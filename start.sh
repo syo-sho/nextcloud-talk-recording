@@ -52,8 +52,8 @@ internalsecret = ${INTERNAL_SECRET}
 
 [ffmpeg]
 # common = ffmpeg -loglevel level+warning -n
- outputaudio = -c:a libopus -b:a 32k
- outputvideo = -c:v libvpx -deadline:v realtime -cpu-used 8 -crf 32 -b:v 800k
+outputaudio = -c:a libopus -b:a 32k
+outputvideo = -c:v libvpx -deadline:v realtime -cpu-used 8 -crf 32 -b:v 800k
 extensionaudio = .ogg
 extensionvideo = .webm
 

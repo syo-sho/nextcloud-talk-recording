@@ -22,7 +22,7 @@ RUN set -ex; \
         # --- 新增：字体支持 (解决画面乱码) ---
         ttf-dejavu \
         font-noto-cjk \
-        fontconfig; \
+        fontconfig \
         ca-certificates \
         tzdata \
         bash \

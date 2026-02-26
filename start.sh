@@ -34,8 +34,8 @@ secret = ${RECORDING_SECRET}
 backends = backend-1
 skipverify = ${SKIP_VERIFY}
 maxmessagesize = 1024
-videowidth = 1920
-videoheight = 1080
+videowidth = 960
+videoheight = 540
 directory = /tmp
 
 [backend-1]
@@ -54,6 +54,8 @@ internalsecret = ${INTERNAL_SECRET}
 # common = ffmpeg -loglevel level+warning -n
 # outputaudio = -c:a libopus
 # outputvideo = -c:v libvpx -deadline:v realtime -crf 10 -b:v 1M
+outputaudio = -c:a libopus -b:a 32k
+outputvideo = -c:v libvpx -deadline:v realtime -cpu-used 8 -crf 32 -b:v 800k
 extensionaudio = .ogg
 extensionvideo = .webm
 
@@ -61,6 +63,7 @@ extensionvideo = .webm
 browser = firefox
 driverPath = /usr/bin/geckodriver
 browserPath = /usr/bin/firefox
+browserArgs = --headless
 RECORDING_CONF
 
 exec "$@"

@@ -14,11 +14,6 @@ ENV HPB_PATH=/standalone-signaling/
 RUN set -ex; \
     apk upgrade --no-cache -a; \
     apk add --no-cache \
-        intel-media-driver \
-        libva-intel-driver \
-        mesa-va-gallium \
-        libva-utils \
-        libdrm \
         # --- 新增：字体支持 (解决画面乱码) ---
         ttf-dejavu \
         font-noto-cjk \
@@ -41,11 +36,7 @@ RUN set -ex; \
         geckodriver; \
 # 1. 刷新字体缓存，让系统识别新安装的中文和符号字体
     fc-cache -fv; \
-# 2. 预创建 X11 目录并授权，解决日志中的 "euid != 0" 错误
-    mkdir -p /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix; \
     useradd -d /tmp --system recording -u 122; \
-    addgroup recording video || true; \
-    addgroup recording render || true; \
 # Give root a random password
     echo "root:$(openssl rand -base64 12)" | chpasswd; \
     git clone --recursive https://github.com/nextcloud/nextcloud-talk-recording --depth=1 --single-branch --branch "$RECORDING_VERSION" /src; \

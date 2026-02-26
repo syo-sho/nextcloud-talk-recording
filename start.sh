@@ -17,7 +17,7 @@ if [ -z "$HPB_DOMAIN" ]; then
 fi
 
 # Delete all contents on startup to start fresh
-rm -fr /tmp/{*,.*}
+rm -rf /tmp/* 2>/dev/null
 
 cat << RECORDING_CONF > "/conf/recording.conf"
 [logs]

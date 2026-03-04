@@ -39,8 +39,9 @@ RUN set -ex; \
     useradd -d /tmp --system recording -u 122; \
 # Give root a random password
     echo "root:$(openssl rand -base64 12)" | chpasswd; \
-  # git clone --recursive https://github.com/nextcloud/nextcloud-talk-recording --depth=1 --single-branch --branch "$RECORDING_VERSION" /src; \
-    RUN sed -i "s/host, port = listen.split(':')/host, port = listen.rsplit(':', 1); host = host.strip('[]')/" /tmp/recording/src/nextcloud/talk/recording/__main__.py; \
+    git clone --recursive https://github.com/nextcloud/nextcloud-talk-recording --depth=1 --single-branch --branch "$RECORDING_VERSION" /src; \
+# 修改源码以支持 IPv6
+    sed -i "s/host, port = listen.split(':')/host, port = listen.rsplit(':', 1); host = host.strip('[]')/" /src/src/nextcloud/talk/recording/__main__.py; \
     python3 -m pip install --no-cache-dir /src; \
     rm -rf /src; \
     touch /etc/recording.conf; \

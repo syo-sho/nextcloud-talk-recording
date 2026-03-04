@@ -26,7 +26,7 @@ level = 30
 
 [http]
 #listen = 0.0.0.0:1234
-listen = [::]:1234
+listen = :1234
 
 [backend]
 allowall = ${ALLOW_ALL}
